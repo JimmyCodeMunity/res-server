@@ -104,7 +104,7 @@ const createUser = async (req, res) => {
 const updateUserByEmail = async(req,res) =>{
     try {
     const { email } = req.params;
-    const updatedUser = await User.findOneAndUpdate(
+    const updatedUser = await Reseller.findOneAndUpdate(
       { email: email }, // Find the brand by its name
       req.body, // Update the brand with the request body data
       { new: true } // Return the updated brand as the response
@@ -140,7 +140,7 @@ const updateUserPasswordByEmail = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Update the user's password
-    const updatedUser = await User.findOneAndUpdate(
+    const updatedUser = await Reseller.findOneAndUpdate(
       { email: email },
       { password: hashedPassword },
       { new: true }
