@@ -4,6 +4,7 @@ const Product = require('./models/ProductModel')
 const Events = require('./models/EventModel')
 const productRoute = require('./routes/ProductRoute');
 const shopRoute = require('./routes/ShopRoutes');
+const supplierRoute = require('./routes/SupplierRoute');
 const eventRoute = require('./routes/EventRoute');
 const resellerRoute = require('./routes/ResellerRoute');
 const categoryRoute = require('./routes/CategoryRoute');
@@ -55,7 +56,7 @@ mongoose.set('strictQuery', true);
 
 app.use('/api/product', productRoute)
 app.use('/api/user', resellerRoute)
-app.use('/api/shop',shopRoute)
+app.use('/api/shop',supplierRoute)
 app.use('/api/event',eventRoute)
 app.use('/api/category',categoryRoute)
 
