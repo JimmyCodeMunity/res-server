@@ -17,7 +17,7 @@ router.get('/productlist', getAllProducts);
 router.get('/productlistcategory/:category',getProductByCategory);
 
 //get product by shop id
-router.get('/productlist/:shopId',getProductByShopId);
+router.get('/productlist/:supplier',getProductByShopId);
 
 //search products
 router.get('/search/:query', searchProducts);
