@@ -2,88 +2,58 @@ const mongoose = require('mongoose');
 
 
 const productSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      required: [true, "Please enter your product name!"],
-    },
-    description: {
-      type: String,
-      required: [true, "Please enter your product description!"],
-    },
-    category: {
-      type: String,
-      required: [true, "Please enter your product category!"],
-    },
-    tags: {
-      type: String,
-    },
-    originalPrice: {
-      type: Number,
-    },
-    discountPrice: {
-      type: Number,
-      required: [true, "Please enter your product price!"],
-    },
-    stock: {
-      type: Number,
-      required: [true, "Please enter your product stock!"],
-    },
-    images: [
-      {
-        public_id: {
-          type: String,
-          required: true,
-        },
-        url: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    reviews: [
-      {
-        user: {
-          type: Object,
-        },
-        rating: {
-          type: Number,
-        },
-        comment: {
-          type: String,
-        },
-        productId: {
-          type: String,
-        },
-        createdAt:{
-          type: Date,
-          default: Date.now(),
-        }
-      },
-    ],
-    ratings: {
-      type: Number,
-    },
-    shopId: {
-      type: String,
-      required: true,
-    },
-    shop: {
-      type: Object,
-      required: true,
-    },
-    sold_out: {
-      type: Number,
-      default: 0,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
-  });
-  
-  
-  
-  
-  const Product = mongoose.model('Product', productSchema);
+  supplier: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Supplier'
+  },
+  sku: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  warranty: {
+    type: Number,
+    required: true
+  },
+  brand: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ["available", "limited", "unavailable"],
+    required: [true, "Please enter your product availability"],
+  },
+  isFeatured: {
+    type: Boolean,
+    default: true
+  },
+},
+  {
+    timestamps: true
+  }
+)
 
-  module.exports = Product;
+
+
+
+
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;

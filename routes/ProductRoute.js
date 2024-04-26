@@ -1,6 +1,6 @@
 const express = require('express');
 const Product = require('../models/ProductModel');
-const { getAllProducts, getProductByCategory,getProductByShopId,searchProducts } = require('../controllers/ProductController');
+const { getAllProducts, getProductByCategory,getProductByShopId,searchProducts,getProductsBySupplier } = require('../controllers/ProductController');
 
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.get('/productlist', getAllProducts);
 router.get('/productlistcategory/:category',getProductByCategory);
 
 //get product by shop id
-router.get('/productlist/:supplier',getProductByShopId);
+router.get('/productlist/:supplier',getProductsBySupplier);
 
 //search products
 router.get('/search/:query', searchProducts);

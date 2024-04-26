@@ -1,5 +1,6 @@
 const express = require('express');
 const Product = require('../models/ProductModel');
+const asyncHandler = require('express-async-handler');
 
 
 //get all the products
@@ -62,12 +63,23 @@ const getProductByShopId = async(req,res)=>{
   
       // Assuming you have a Product model with a 'shopId' field
       const products = await Product.find({ supplier });
+      console.log(supplier)
   
       res.status(200).json(products);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   }
+
+  const getProductsBySupplier = asyncHandler(async (req, res) => {
+    try {
+        const supplierId = req.params.supplier;
+        const products = await Product.find({ supplier: supplierId });
+        res.status(200).json({ success: true, products });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Failed to fetch products' });
+    }
+})
 
 const searchProducts = async(req,res)=>{
     try {
@@ -98,5 +110,6 @@ module.exports = {
     getSubcategories,
     getProductByCategory,
     getProductByShopId,
-    searchProducts
+    searchProducts,
+    getProductsBySupplier
 }
