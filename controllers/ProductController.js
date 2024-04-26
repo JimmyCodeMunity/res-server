@@ -58,10 +58,10 @@ const getProductByCategory = async (req, res) => {
 //get product by shopid
 const getProductByShopId = async(req,res)=>{
     try {
-      const { shopId } = req.params;
+      const { supplier } = req.params;
   
       // Assuming you have a Product model with a 'shopId' field
-      const products = await Product.find({ shopId });
+      const products = await Product.find({ supplier });
   
       res.status(200).json(products);
     } catch (error) {
