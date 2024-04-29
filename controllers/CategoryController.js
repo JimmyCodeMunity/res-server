@@ -36,6 +36,8 @@ const getAllCategories = asyncHandler(async (req, res) => {
     res.json(categories)
 })
 
+
+
 const updateCategory = asyncHandler(async (req, res) => {
     const { id, name, status,} = req.body;
 
