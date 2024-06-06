@@ -21,7 +21,7 @@ const getAllUsers = async (req, res) => {
 const getAllUsersByEmail = async (req, res) => {
     try {
         const {email} = req.params;
-        const user = await Reseller.find({email});
+        const user = await Reseller.findOne({email});
         if(!user){
             res.status(404).json({message:'you have not added any item to cart'});
         }
